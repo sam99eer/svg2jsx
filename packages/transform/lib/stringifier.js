@@ -53,7 +53,7 @@ function stringify(node, config) {
   }
 
   const attributes = stringifyAttributes(node.attributes);
-  const propsString = node.name === 'svg' && config.typescript && config.type === 'functional' ? ' {...props}' : '';
+  const propsString = node.name === 'svg' && config.type === 'functional' ? ' {...props}' : '';
   const buffer = `<${node.name}${attributes}${propsString}>`;
 
   const childrensBuffer = node.children.reduce((accumulator, childrenNode) => {

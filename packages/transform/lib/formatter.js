@@ -21,7 +21,7 @@ const TEMPLATES = {
   functional: `
     import <%= packageImports %> from "react";
     
-    const Icon = (props: SVGProps<SVGSVGElement>) => {
+    const Icon = (props<%= propsType %>) => {
       return <%= svg %>;
     }
 
@@ -40,6 +40,7 @@ function reactify(svg, { type = 'functional', memo, typescript }) {
     packageImports: memo
       ? `React, { memo${typescript ? ', SVGProps' : ''} }`
       : `React${typescript ? ', { SVGProps }' : ''}`,
+    propsType: typescript ? `: SVGProps<SVGSVGElement>` : '',
     parentComponent: memo ? `React.PureComponent` : `React.Component`,
     exportComponent: memo ? `memo(Icon)` : `Icon`,
   };
