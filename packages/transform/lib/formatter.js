@@ -19,9 +19,9 @@ const TEMPLATES = {
     export default Icon;
   `,
   functional: `
-    import React from "react";
+    import <%= packageImports %> from "react";
     
-    function Icon() {
+    const Icon = (props: SVGProps<SVGSVGElement>) => {
       return <%= svg %>;
     }
 
@@ -37,8 +37,9 @@ const TEMPLATES = {
  */
 function reactify(svg, { type = 'functional', memo }) {
   const data = {
+    packageImports: memo ? `React, { memo }` : `React`,
     parentComponent: memo ? `React.PureComponent` : `React.Component`,
-    exportComponent: memo ? `React.memo(Icon)` : `Icon`,
+    exportComponent: memo ? `memo(Icon)` : `Icon`,
   };
 
   const compile = template(TEMPLATES[type]);
