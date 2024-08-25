@@ -1,17 +1,16 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import color from '../styles/color';
 import getVariantColor, { VariantType } from '../utils/getVariantColor';
 
-import Text from '../components/Text';
-import Link from '../components/Link';
 import Grid from '../components/Grid';
 import GridCell from '../components/GridCell';
+import Link from '../components/Link';
+import Text from '../components/Text';
 
+import IconGithub from '../icons/IconGithub';
 import IconLogo from '../icons/IconLogo';
 import IconStar from '../icons/IconStar';
-import IconGithub from '../icons/IconGithub';
 
 interface INavBar {
   variant: VariantType;
@@ -44,7 +43,7 @@ function NavBar({ variant }: INavBar) {
         <GridCell>
           <Link href="/">
             <IconLogo />
-            <TextLogo fontWeight="bold">SVG 2 JSX</TextLogo>
+            <TextLogo fontWeight="bold">SVG 2 TSX</TextLogo>
           </Link>
         </GridCell>
         <GridCell>
