@@ -44,15 +44,17 @@ function stringifyAttributes(attributes = {}) {
 /**
  * Stringify SVG tree.
  * @param {Object} node Root node.
+ * @param {Object} config User selected config.
  * @returns {string}
  */
-function stringify(node) {
+function stringify(node, config) {
   if (isString(node)) {
     return node;
   }
 
   const attributes = stringifyAttributes(node.attributes);
-  const buffer = `<${node.name}${attributes}>`;
+  const propsString = node.name === 'svg' && config.typescript && config.type === 'functional' ? ' {...props}' : '';
+  const buffer = `<${node.name}${attributes}${propsString}>`;
 
   const childrensBuffer = node.children.reduce((accumulator, childrenNode) => {
     return accumulator + stringify(childrenNode);

@@ -14,7 +14,7 @@ async function transformer(svg, config = {}) {
   const cleaned = await clean(svg, config);
   const parsed = parse(cleaned.data);
   const transformed = transform(parsed);
-  const morphed = stringify(transformed);
+  const morphed = stringify(transformed, config);
   const formatted = format(morphed, config);
 
   return formatted;
