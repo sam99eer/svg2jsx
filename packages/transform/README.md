@@ -10,6 +10,7 @@
 - **_config_** `Map`
   - **type** `functional | class` The type of the resulting component
   - **jsxSingleQuote** `Boolean` Either double or single quotes in JSX attributes
+  - **typescript** `Boolean` Enables typescript props and support
 
 #### Returns
 
