@@ -1,14 +1,15 @@
-import { ChangeEvent } from 'react';
 import { ConfigType } from '@svg2jsx/transform';
+import { ChangeEvent } from 'react';
 
 import useSetState from './useSetState';
 
 export default function useConfig() {
   const [config, setConfig] = useSetState<ConfigType>({
-    memo: false,
+    memo: true,
     cleanupIDs: true,
-    jsxSingleQuote: false,
+    jsxSingleQuote: true,
     type: 'functional',
+    typescript: true,
   });
 
   function setQuote({ target }: ChangeEvent<HTMLInputElement>): void {
@@ -35,11 +36,18 @@ export default function useConfig() {
     });
   }
 
+  function setTypescript({ target }: ChangeEvent<HTMLInputElement>): void {
+    setConfig({
+      typescript: target.checked,
+    });
+  }
+
   return {
     config,
     setQuote,
     setType,
     setIDs,
     setMemo,
+    setTypescript,
   };
 }

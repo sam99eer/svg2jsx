@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 import color from '../styles/color';
@@ -7,23 +7,25 @@ import getVariantColor, { VariantType } from '../utils/getVariantColor';
 
 import Grid from '../components/Grid';
 import GridCell from '../components/GridCell';
-import Switch from '../components/Switch';
 import Headings from '../components/Headings';
+import Switch from '../components/Switch';
 
-import IconGear from '../icons/IconGear';
-import IconCross from '../icons/IconCross';
 import IconCheckMark from '../icons/IconCheckMark';
+import IconCross from '../icons/IconCross';
+import IconGear from '../icons/IconGear';
 
 interface ISettingsBar {
   memo: boolean;
   variant: VariantType;
   cleanupIDs: boolean;
   jsxSingleQuote: boolean;
+  typescript: boolean;
   type: 'functional' | 'class';
   onChangeType(event: ChangeEvent<HTMLInputElement>): void;
   onChangeQuote(event: ChangeEvent<HTMLInputElement>): void;
   onChangeIDs(event: ChangeEvent<HTMLInputElement>): void;
   onChangeMemo(event: ChangeEvent<HTMLInputElement>): void;
+  onChangeTypescript(event: ChangeEvent<HTMLInputElement>): void;
 }
 
 interface IStatus {
@@ -54,10 +56,12 @@ function SettingsBar({
   variant,
   jsxSingleQuote,
   cleanupIDs,
+  typescript,
   onChangeType,
   onChangeQuote,
   onChangeIDs,
   onChangeMemo,
+  onChangeTypescript,
 }: ISettingsBar) {
   const isFunctional = type === 'functional';
 
@@ -65,11 +69,12 @@ function SettingsBar({
     <Section>
       <Grid columns="2fr 1fr 2fr">
         <GridCell>
-          <Grid columns="auto auto auto auto" justify="flex-start" gap={20}>
+          <Grid columns="auto auto auto auto auto" justify="flex-start" gap={20}>
             <Switch label="Functional" checked={isFunctional} onChange={onChangeType} />
             <Switch label="Remove IDs" checked={cleanupIDs} onChange={onChangeIDs} />
             <Switch label="Single quotes" checked={jsxSingleQuote} onChange={onChangeQuote} />
             <Switch label="Memo" checked={memo} onChange={onChangeMemo} />
+            <Switch label="Typescript" checked={typescript} onChange={onChangeTypescript} disabled={!isFunctional} />
           </Grid>
         </GridCell>
         <GridCell>

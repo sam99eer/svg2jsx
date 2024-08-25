@@ -35,9 +35,11 @@ const TEMPLATES = {
  * @param {string="functional","class"} config.type Desired component type.
  * @return {string}
  */
-function reactify(svg, { type = 'functional', memo }) {
+function reactify(svg, { type = 'functional', memo, typescript }) {
   const data = {
-    packageImports: memo ? `React, { memo }` : `React`,
+    packageImports: memo
+      ? `React, { memo${typescript ? ', SVGProps' : ''} }`
+      : `React${typescript ? ', { SVGProps }' : ''}`,
     parentComponent: memo ? `React.PureComponent` : `React.Component`,
     exportComponent: memo ? `memo(Icon)` : `Icon`,
   };
